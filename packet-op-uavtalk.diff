@@ -1,0 +1,18 @@
+27d26
+< #ifdef HAVE_CONFIG_H
+29d27
+< #endif
+119c117
+<         tvbuff_t *next_tvb = tvb_new_subset(tvb, offset,
+---
+>         tvbuff_t *next_tvb = tvb_new_subset_length_caplen (tvb, offset,
+181c179
+<     uavtalk_subdissector_table = register_dissector_table("uavtalk.objid", "UAVObject ID", FT_UINT32, BASE_HEX);
+---
+>     uavtalk_subdissector_table = register_dissector_table("uavtalk.objid", "UAVObject ID", proto_op_uavtalk, FT_UINT32, BASE_HEX);
+196,197c194,195
+<     op_uavtalk_handle = new_create_dissector_handle(dissect_op_uavtalk, proto_op_uavtalk);
+<     dissector_add_handle("udp.port", op_uavtalk_handle); /* for "decode as" */
+---
+>     op_uavtalk_handle = create_dissector_handle(dissect_op_uavtalk, proto_op_uavtalk);
+>    // dissector_add_handle("udp.port", op_uavtalk_handle); /* for "decode as" */
